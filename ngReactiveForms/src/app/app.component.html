@@ -1,0 +1,29 @@
+<div style="width: 100%;height: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column">
+  <mat-card class="artist-card" style="margin: 16px; padding: 16px;">
+    <form [formGroup]="form">
+      <mat-error *ngIf="form.hasError('chatIsLife')">
+        Blaspheme
+      </mat-error>
+
+      <mat-form-field style="width: 100%">
+        <input matInput type="text" placeholder="La réponse est chat" formControlName="chat" name="chat">
+        <mat-error *ngIf="form.get('chat')?.hasError('chatValidator')">
+          Vous devez préférer le chat!
+        </mat-error>
+        <mat-error *ngIf="form.get('chat')?.hasError('required')">
+          Le chat est <strong>requis</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field style="width: 100%">
+        <input matInput type="text" placeholder="euh oui?" formControlName="oui" name="oui">
+        <mat-error *ngIf="form.get('oui')?.hasError('ouiValidator')">
+          euhh oui!
+        </mat-error>
+        <mat-error *ngIf="form.get('oui')?.hasError('required')">
+          La réponse est <strong>requise</strong>
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" [disabled]="!form.valid">Enregistrer</button>
+    </form>
+  </mat-card>
+</div>
